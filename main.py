@@ -15,10 +15,8 @@ try:
             if s != 1 and s != 2:
                 s = int(input("Якщо ви хочете грати за Х - 1, за О - 2: "))
         except:
-            global s
-            s = int(input("Якщо ви хочете грати за Х - 1, за О - 2: "))
-            if s != 1 and s != 2:
-                s = int(input("Якщо ви хочете грати за Х - 1, за О - 2: "))
+            print("Хибний ввід")
+            first_menu()
 
     first_menu()
 
@@ -73,86 +71,97 @@ try:
             final_menu()
 
     def final_menu():
-        global field0, field1, field2, move_counter, win
-        r = int(input("Якщо ви хочете зіграти ще раз - 1, якщо хочете закінчити гру - 2: "))
-        if r != 1 and r != 2:
+
+        try:
+            global field0, field1, field2, move_counter, win
             r = int(input("Якщо ви хочете зіграти ще раз - 1, якщо хочете закінчити гру - 2: "))
-        if r == 1:
-            first_menu()
-            field0 = [" ", " | ", " ", " | ", " "]
-            field1 = [" ", " | ", " ", " | ", " "]
-            field2 = [" ", " | ", " ", " | ", " "]
-            move_counter = 0
-            win = False
-        elif r == 2:
-            exit(0)
+            if r != 1 and r != 2:
+                r = int(input("Якщо ви хочете зіграти ще раз - 1, якщо хочете закінчити гру - 2: "))
+            if r == 1:
+                first_menu()
+                field0 = [" ", " | ", " ", " | ", " "]
+                field1 = [" ", " | ", " ", " | ", " "]
+                field2 = [" ", " | ", " ", " | ", " "]
+                move_counter = 0
+                win = False
+            elif r == 2:
+                exit(0)
+        except:
+            print("Хибний ввід")
+            final_menu()
     def move():
-        global s, i, j, move_counter
-        while move_counter < 9:
-            move_counter += 1
-            if s == 1:
-                i = int(input("ведіть рядок в якому ви хочете поставити X (0, 1, 2) "))
-                j = int(input("ведіть стовпчик в якому ви хочете поставити X (0, 1, 2) "))
-                if i != 0 and i != 1 and i != 2:
+
+        try:
+            global s, i, j, move_counter
+            while move_counter < 9:
+                move_counter += 1
+                if s == 1:
                     i = int(input("ведіть рядок в якому ви хочете поставити X (0, 1, 2) "))
-                if j != 0 and j != 1 and j != 2:
                     j = int(input("ведіть стовпчик в якому ви хочете поставити X (0, 1, 2) "))
-                j = j * 2
-                if i == 0:
-                    if field0[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field0[j] = symbolX
-                        s = 2
-                elif i == 1:
-                    if field1[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field1[j] = symbolX
-                        s = 2
-                elif i == 2:
-                    if field2[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field2[j] = symbolX
-                        s = 2
-                all_field()
-            elif s == 2:
-                i = int(input("ведіть рядок в якому ви хочете поставити 0 (0, 1, 2) "))
-                j = int(input("ведіть стовпчик в якому ви хочете поставити 0 (0, 1, 2) "))
-                if i != 0 and i != 1 and i != 2:
+                    if i != 0 and i != 1 and i != 2:
+                        i = int(input("ведіть рядок в якому ви хочете поставити X (0, 1, 2) "))
+                    if j != 0 and j != 1 and j != 2:
+                        j = int(input("ведіть стовпчик в якому ви хочете поставити X (0, 1, 2) "))
+                    j = j * 2
+                    if i == 0:
+                        if field0[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field0[j] = symbolX
+                            s = 2
+                    elif i == 1:
+                        if field1[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field1[j] = symbolX
+                            s = 2
+                    elif i == 2:
+                        if field2[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field2[j] = symbolX
+                            s = 2
+                    all_field()
+                elif s == 2:
                     i = int(input("ведіть рядок в якому ви хочете поставити 0 (0, 1, 2) "))
-                if j != 0 and j != 1 and j != 2:
                     j = int(input("ведіть стовпчик в якому ви хочете поставити 0 (0, 1, 2) "))
-                j = j * 2
-                if i == 0:
-                    if field0[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field0[j] = symbol0
-                        s = 1
-                elif i == 1:
-                    if field1[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field1[j] = symbol0
-                        s = 1
-                elif i == 2:
-                    if field2[j] != " ":
-                        print("Ця комірка зайнята, спробуйте ще раз")
-                        move_counter -= 1
-                    else:
-                        field2[j] = symbol0
-                        s = 1
-                all_field()
-            win_check()
-            if win == True:
-                final_menu()
+                    if i != 0 and i != 1 and i != 2:
+                        i = int(input("ведіть рядок в якому ви хочете поставити 0 (0, 1, 2) "))
+                    if j != 0 and j != 1 and j != 2:
+                        j = int(input("ведіть стовпчик в якому ви хочете поставити 0 (0, 1, 2) "))
+                    j = j * 2
+                    if i == 0:
+                        if field0[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field0[j] = symbol0
+                            s = 1
+                    elif i == 1:
+                        if field1[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field1[j] = symbol0
+                            s = 1
+                    elif i == 2:
+                        if field2[j] != " ":
+                            print("Ця комірка зайнята, спробуйте ще раз")
+                            move_counter -= 1
+                        else:
+                            field2[j] = symbol0
+                            s = 1
+                    all_field()
+                win_check()
+                if win == True:
+                    final_menu()
+        except:
+            print("Хибний ввід")
+            move_counter -= 1
+            move()
 
     move()
 
